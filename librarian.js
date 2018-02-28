@@ -4,41 +4,71 @@ var library = [
   { title: "Mythos: A Retelling of the Myths of Ancient Greece", year: "1981", author: "Stephen Fry", publisher: "Penguin" },
   { title: "The Mythical Man-Month", year: "1975", author: "Fred Brooks", publisher: "Addison-Wesley" },
   { title: "The Pragmatic Programmer", year: "1999", author: "Andy Hunt and Dave Thomas", publisher: "The Pragmatic Bookshelf	" },
-  { title: "memories to midnight", year: "1989", author: "Sydney sheldon", publisher: "The Pragmatic" }
+  { title: "Lord of the Rings", year: "2004", author: "J.K.Tolkien", publisher: "Scribles " }
   /* Task 2 */
 ];
 
 /* Task 1 */
 function getBookTitle( index ){
-  //add code
- return library[index].title;
+  return library[index].title
 }
 
-console.log(getBookTitle(5));
+console.log(getBookTitle(3));
 
 /* Task 3 */
 function addBook( book ){
-  //add code
-  library.push(book);
-  return library;
+
+   library.push(book);
+   return library;
+
 }
 
 var newBook = {
-  title: "sherlock holmes", year: "1879", author: "sir arthur conan doyle", publisher: "The Pragmatic"
+
+		title: "The Passion of the Mind", year: "1971", author: "Sigmund Freud", publisher: "Scribles "
+
+
 };
 console.log(addBook(newBook));
 
 /* Task 4 */
 function bookByAuthor(){
-  //add code
+  var n = library.length;
+  var temp;
+  for (var i = 0; i <= n-1; i++) {
+  	for (var j = 0; j <= n-1; j++) {
+  		if (library[i].author < library[j].author) {
+  			temp = library[i];
+  			library[i] = library[j];
+  			library[j] = temp;
+  		}
+  	}
+  }
+return library;
+
+
+
 }
 
 console.log(bookByAuthor());
 
+
 /* Task 5 */
 function findByTitle( title ){
-  //add code
+  var mName = [];
+  var mTitle;
+  for(var i = 0; i < library.length; i++){
+    mTitle = library[i].title;
+    n = mTitle.search(title);
+
+    if(n!=-1){
+      mName[i] = library[i];
+    }
+
+  }
+  return JSON.stringify(mName);
 }
 
-console.log(findByTitle("man"));
-console.log(findByTitle("myth"));
+
+console.log(findByTitle(/man/i));
+console.log(findByTitle(/myth/i));
